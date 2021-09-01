@@ -7,5 +7,6 @@ package br.com.liebersonsantos.todoappexample.data
 enum class Status {
     TODO,
     PROGRESS,
-    DONE
+    DONE,
+    UNDEFINED
 }

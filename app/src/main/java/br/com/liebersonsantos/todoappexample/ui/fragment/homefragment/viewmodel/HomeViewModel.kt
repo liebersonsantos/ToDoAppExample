@@ -1,4 +1,4 @@
-package br.com.liebersonsantos.todoappexample.ui.viewmodel
+package br.com.liebersonsantos.todoappexample.ui.fragment.homefragment.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +17,7 @@ import javax.inject.Named
  * @author lieberson.xsantos@gmail.com
  */
 @HiltViewModel
-class TaskViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     @Named("io") private val ioDispatcher: CoroutineDispatcher,
     private val insertUseCase: InsertUseCaseDbImpl,
     private val getTaskUseCaseDb: GetTaskUseCaseImpl
