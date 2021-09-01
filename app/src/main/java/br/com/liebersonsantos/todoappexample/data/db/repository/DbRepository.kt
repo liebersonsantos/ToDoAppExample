@@ -8,7 +8,7 @@ import br.com.liebersonsantos.todoappexample.data.model.Task
  * @author lieberson.xsantos@gmail.com
  */
 interface DbRepository {
-    suspend fun insert(task: Task)
+    suspend fun insert(task: Task): Long
     fun getAllTasks(): LiveData<List<Task>>
     fun getTaskById(id: Int): LiveData<Task>
     fun getAllTasksOrderByDate(): LiveData<List<Task>>

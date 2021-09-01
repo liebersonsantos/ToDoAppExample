@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.liebersonsantos.todoappexample.data.model.Task
-import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.gettasksusecase.GetTaskUseCaseImpl
-import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.insertusecase.InsertUseCaseDbImpl
+import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.gettasksusecase.GetTaskUseCaseDb
+import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.insertusecase.InsertUseCaseDb
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -19,16 +21,9 @@ import javax.inject.Named
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     @Named("io") private val ioDispatcher: CoroutineDispatcher,
-    private val insertUseCase: InsertUseCaseDbImpl,
-    private val getTaskUseCaseDb: GetTaskUseCaseImpl
+    private val getTaskUseCaseDb: GetTaskUseCaseDb
 ): ViewModel() {
 
     val allTasks: LiveData<List<Task>> = getTaskUseCaseDb.invoke()
-
-    fun addTask(task: Task){
-        viewModelScope.launch {
-            insertUseCase.invoke(task)
-        }
-    }
 
 }

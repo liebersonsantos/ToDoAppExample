@@ -12,7 +12,7 @@ import br.com.liebersonsantos.todoappexample.data.model.Task
 interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(task: Task)
+    suspend fun insert(task: Task): Long
 
     @Query("SELECT * FROM task_table ORDER BY name ASC")
     fun getAllTasks(): LiveData<List<Task>>

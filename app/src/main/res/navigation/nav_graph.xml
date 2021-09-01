@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="br.com.liebersonsantos.todoappexample.ui.fragment.homefragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="br.com.liebersonsantos.todoappexample.ui.fragment.addtaskfragment.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" />
 </navigation>

@@ -10,7 +10,7 @@ import javax.inject.Inject
  * @author lieberson.xsantos@gmail.com
  */
 class DbRepositoryImpl @Inject constructor(private val taskDao: TaskDao): DbRepository {
-    override suspend fun insert(task: Task) = taskDao.insert(task)
+    override suspend fun insert(task: Task): Long = taskDao.insert(task)
     override fun getAllTasks(): LiveData<List<Task>> = taskDao.getAllTasks()
     override fun getTaskById(id: Int): LiveData<Task> = taskDao.getTaskById(id)
     override fun getAllTasksOrderByDate(): LiveData<List<Task>> = taskDao.getAllTasksOrderByDate()

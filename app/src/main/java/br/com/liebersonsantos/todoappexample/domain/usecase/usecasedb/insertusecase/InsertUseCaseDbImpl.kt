@@ -10,5 +10,5 @@ import javax.inject.Inject
  */
 class InsertUseCaseDbImpl @Inject constructor(private val dbRepository: DbRepository):
     InsertUseCaseDb {
-    override suspend fun invoke(task: Task) = dbRepository.insert(task)
+    override suspend fun invoke(task: Task): Long  = dbRepository.insert(task)
 }

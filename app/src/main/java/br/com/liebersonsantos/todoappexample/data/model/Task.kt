@@ -12,7 +12,7 @@ import org.threeten.bp.OffsetDateTime
 @Entity(tableName = "task_table")
 data class Task(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     val name: String,
     val date: OffsetDateTime? = null,
     val status: String = Status.TODO.name

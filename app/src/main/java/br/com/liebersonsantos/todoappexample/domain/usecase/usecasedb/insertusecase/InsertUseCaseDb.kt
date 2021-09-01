@@ -7,5 +7,5 @@ import br.com.liebersonsantos.todoappexample.data.model.Task
  * @author lieberson.xsantos@gmail.com
  */
 interface InsertUseCaseDb {
-    suspend operator fun invoke(task: Task)
+    suspend operator fun invoke(task: Task): Long
 }
