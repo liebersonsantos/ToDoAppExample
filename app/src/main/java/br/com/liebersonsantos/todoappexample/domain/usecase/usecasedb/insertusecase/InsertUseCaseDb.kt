@@ -1,4 +1,4 @@
-package br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb
+package br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.insertusecase
 
 import br.com.liebersonsantos.todoappexample.data.model.Task
 

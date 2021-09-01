@@ -10,12 +10,25 @@ import br.com.liebersonsantos.todoappexample.data.model.Task
  */
 @Dao
 interface TaskDao {
-    @Query("SELECT * FROM task_table ORDER BY name ASC")
-    fun getAllTasks(): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(task: Task)
 
-    @Delete
-    suspend fun deleteTask(task: Task)
+    @Query("SELECT * FROM task_table ORDER BY name ASC")
+    fun getAllTasks(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM task_table WHERE id = :id")
+    fun getTaskById(id: Int): LiveData<Task>
+
+    @Query("SELECT * FROM task_table ORDER BY date ASC")
+    fun getAllTasksOrderByDate(): LiveData<List<Task>>
+
+    @Query("DELETE FROM task_table")
+    suspend fun deleteAll()
+
+    @Query("DELETE FROM task_table WHERE id = :id")
+    suspend fun deleteById(id: Int)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun update(task: Task)
 }

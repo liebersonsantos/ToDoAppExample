@@ -1,0 +1,46 @@
+package br.com.liebersonsantos.todoappexample
+
+import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
+import kotlin.jvm.Throws
+
+/**
+ * Created by lieberson on 8/31/21.
+ * @author lieberson.xsantos@gmail.com
+ */
+@VisibleForTesting(otherwise = VisibleForTesting.NONE)
+fun <T> LiveData<T>.waitForValue(
+    time: Long = 2,
+    timeUnit: TimeUnit = TimeUnit.SECONDS,
+    afterObserve: () -> Unit = {}
+): T {
+    var data: T? = null
+    val latch = CountDownLatch(1)
+    val observer = object : Observer<T> {
+        override fun onChanged(o: T?) {
+            data = o
+            latch.countDown()
+            this@waitForValue.removeObserver(this)
+        }
+    }
+    this.observeForever(observer)
+
+    try {
+        afterObserve.invoke()
+
+        // Don't wait indefinitely if the LiveData is not set.
+        if (!latch.await(time, timeUnit)) {
+            throw TimeoutException("LiveData value was never set.")
+        }
+
+    } finally {
+        this.removeObserver(observer)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    return data as T
+}

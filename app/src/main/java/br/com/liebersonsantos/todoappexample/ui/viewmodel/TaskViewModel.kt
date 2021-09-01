@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.liebersonsantos.todoappexample.data.model.Task
-import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.GetTaskUseCaseImpl
-import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.InsertUseCaseDbImpl
+import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.gettasksusecase.GetTaskUseCaseImpl
+import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.insertusecase.InsertUseCaseDbImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
