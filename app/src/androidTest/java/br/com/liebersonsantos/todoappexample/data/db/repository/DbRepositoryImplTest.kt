@@ -110,4 +110,17 @@ class DbRepositoryImplTest: TestCase() {
         assertEquals(checkTasks.size, allTasks.size -1)
     }
 
+    @Test
+    fun updateTask() = runBlocking{
+        //given
+        val task = Task(name = "test")
+        taskDao.insert(task)
+        val allTasks = taskDao.getAllTasks().waitForValue()
+        val updatedTask = allTasks[0].copy(name = "new test")
+        //when
+        taskDao.update(updatedTask)
+        //then
+        val updated = taskDao.getAllTasks().waitForValue()
+        assertEquals(updated[0].name, updatedTask.name)
+    }
 }
