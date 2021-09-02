@@ -5,5 +5,5 @@ package br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.deleteuse
  * @author lieberson.xsantos@gmail.com
  */
 interface DeleteTaskByIdUseCase {
-    suspend operator fun invoke(id: Int)
+    suspend operator fun invoke(id: Long)
 }

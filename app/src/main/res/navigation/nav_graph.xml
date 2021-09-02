@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_homeFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="br.com.liebersonsantos.todoappexample.ui.fragment.addtaskfragment.AddTaskFragment"
         android:label="fragment_add_task"
         tools:layout="@layout/fragment_add_task" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="br.com.liebersonsantos.todoappexample.ui.fragment.detailfragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>

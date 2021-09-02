@@ -8,5 +8,5 @@ import javax.inject.Inject
  * @author lieberson.xsantos@gmail.com
  */
 class DeleteTaskByIdUseCaseImpl @Inject constructor(private val dbRepository: DbRepository): DeleteTaskByIdUseCase {
-    override suspend fun invoke(id: Int) = dbRepository.deleteTaskById(id)
+    override suspend fun invoke(id: Long) = dbRepository.deleteTaskById(id)
 }

@@ -1,5 +1,7 @@
 package br.com.liebersonsantos.todoappexample.domain.di
 
+import android.content.Context
+import br.com.liebersonsantos.todoappexample.customapplication.CustomApplication
 import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.deleteusecase.DeleteAllUseCaseDb
 import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.deleteusecase.DeleteAllUseCaseDbImpl
 import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.deleteusecase.DeleteTaskByIdUseCase
@@ -11,8 +13,11 @@ import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.updateusec
 import br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.updateusecase.UpdateTaskUseCaseImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Singleton
 
 /**
  * Created by lieberson on 8/31/21.

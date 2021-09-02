@@ -7,6 +7,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.addtaskfragment.AddTaskFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarAdd"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_task_name"
+            android:textAllCaps="true"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <EditText
         android:id="@+id/edtTaskNewName"
         android:layout_width="match_parent"
@@ -21,7 +42,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdd"/>
 
     <TextView
         android:id="@+id/txtTaskNewTime"

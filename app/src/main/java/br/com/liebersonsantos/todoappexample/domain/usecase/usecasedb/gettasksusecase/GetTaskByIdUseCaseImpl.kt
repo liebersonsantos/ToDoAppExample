@@ -1,6 +1,8 @@
 package br.com.liebersonsantos.todoappexample.domain.usecase.usecasedb.gettasksusecase
 
+import androidx.lifecycle.LiveData
 import br.com.liebersonsantos.todoappexample.data.db.repository.DbRepository
+import br.com.liebersonsantos.todoappexample.data.model.Task
 import javax.inject.Inject
 
 /**
@@ -9,5 +11,5 @@ import javax.inject.Inject
  */
 class GetTaskByIdUseCaseImpl @Inject constructor(private val dbRepository: DbRepository):
     GetTaskByIdUseCase {
-    override fun invoke(id: Int) = dbRepository.getTaskById(id)
+    override fun invoke(id: Long): LiveData<Task> = dbRepository.getTaskById(id)
 }

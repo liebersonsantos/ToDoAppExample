@@ -15,5 +15,5 @@ data class Task(
     val id: Long = 0,
     val name: String,
     val date: OffsetDateTime? = null,
-    val status: String = Status.TODO.name
+    val state: String = Status.TODO.name
 )

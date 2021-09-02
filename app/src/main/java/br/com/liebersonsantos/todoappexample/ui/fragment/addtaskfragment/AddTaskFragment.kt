@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TimePicker
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
@@ -42,7 +45,7 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private var taskDate = TaskDate()
     private lateinit var task: Task
 
-    private val workManager = WorkManager.getInstance(requireContext())
+    private lateinit var workManager: WorkManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,15 +57,29 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setListener()
+        setToolbar()
+        back()
 
-        viewModel.insert.observe(viewLifecycleOwner){ taskId ->
-            if (taskDate.isDateReady() && taskDate.isTimeReady()) {
+        activity?.let { activity ->
+            workManager = WorkManager.getInstance(activity)
 
-            }
+            setListener()
+            observeVMEvents()
         }
 
+    }
 
+    private fun observeVMEvents() {
+        viewModel.insert.observe(viewLifecycleOwner) { taskId ->
+            if (taskDate.isDateReady() && taskDate.isTimeReady()) {
+                workManager(task.copy(id = taskId))
+            } else {
+                Toast.makeText(requireActivity(), R.string.date_not_set, Toast.LENGTH_LONG)
+                    .show()
+            }
+
+            findNavController().popBackStack()
+        }
     }
 
     private fun setListener() {
@@ -137,5 +154,21 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         taskDate = taskDate.copy(minute = minute, hour = hourOfDay)
         binding.txtTaskNewTime.text = "$hourOfDay:$minute"
+    }
+
+    private fun setToolbar() {
+        val activity = (activity as AppCompatActivity)
+        activity.run {
+            setSupportActionBar(binding.toolbarAdd)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_black_24)
+            supportActionBar?.title = ""
+        }
+    }
+
+    private fun back() {
+        binding.toolbarAdd.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

@@ -8,5 +8,5 @@ import br.com.liebersonsantos.todoappexample.data.model.Task
  * @author lieberson.xsantos@gmail.com
  */
 interface GetTaskByIdUseCase {
-    operator fun invoke(id: Int): LiveData<Task>
+    operator fun invoke(id: Long): LiveData<Task>
 }

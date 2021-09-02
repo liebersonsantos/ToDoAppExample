@@ -8,5 +8,19 @@ enum class Status {
     TODO,
     PROGRESS,
     DONE,
-    UNDEFINED
+    UNDEFINED;
+
+    companion object {
+        fun safeValueOf(name: String): Status =
+            values().find {
+                it.name.equals(name, ignoreCase = true)
+            } ?: UNDEFINED
+
+        fun status() = arrayOf(
+            TODO.name,
+            PROGRESS.name,
+            DONE.name
+        )
+
+    }
 }

@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import br.com.liebersonsantos.todoappexample.data.Status
 import br.com.liebersonsantos.todoappexample.data.model.Task
 import br.com.liebersonsantos.todoappexample.databinding.ItemTaskBinding
+import br.com.liebersonsantos.todoappexample.extensions.converterToDate
 
 /**
  * Created by lieberson on 8/31/21.
@@ -34,7 +36,10 @@ class HomeAdapter(
 
         fun bind(task: Task) {
             itemBinding.run {
-
+                txtItemTaskName.text = task.name
+                txtItemTaskDate.text = (task.date?.converterToDate()?.getDateTimeSet() ?: "").toString()
+                txtItemTaskStatus.text = task.state
+                txtItemTaskStatus.setStatus(Status.safeValueOf(task.state))
 
                 itemView.setOnClickListener {
                     clickedItem.invoke(task)

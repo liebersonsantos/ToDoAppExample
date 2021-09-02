@@ -10,9 +10,9 @@ import br.com.liebersonsantos.todoappexample.data.model.Task
 interface DbRepository {
     suspend fun insert(task: Task): Long
     fun getAllTasks(): LiveData<List<Task>>
-    fun getTaskById(id: Int): LiveData<Task>
+    fun getTaskById(id: Long): LiveData<Task>
     fun getAllTasksOrderByDate(): LiveData<List<Task>>
     suspend fun deleteAll()
-    suspend fun deleteTaskById(id: Int)
+    suspend fun deleteTaskById(id: Long)
     suspend fun update(task: Task)
 }
